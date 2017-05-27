@@ -1,6 +1,6 @@
 <template>
-  <div class="app-header">
-    <header class="header-container">
+  <header class="app-header">
+    <div class="header-container">
       <a class="home-link" href="/">
         <img class="logo" :src="images.logo" />
         <span>yanm1ng</span>
@@ -10,14 +10,16 @@
           <router-link class="item-link" :class="{ 'active': current === item.link }" :to="item.link">{{ item.name }}</router-link>
         </li>
       </ul>
-      <img class="menu" :src="images.menu" @click="openMenu()" />
-    </header>
+      <img class="menu" :src="images.menu" @click="toggleMenu()" />
+    </div>
     <div class="menu-mask" :class="{ 'open': opened }">
-      <ul>
-        <li>1</li>
+      <ul class="menu-list">
+        <li class="menu-item" v-for="(item, index) in links" :key="index">
+          <a @click="toRouter(item.link)" class="menu-link" :class="{ 'mobile-active': current === item.link }">{{ item.name }}</a>
+        </li>
       </ul>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -47,8 +49,14 @@ export default {
     }
   },
   methods: {
-    openMenu() {
+    toggleMenu() {
       this.opened = !this.opened
+    },
+    toRouter(to) {
+      this.$router.push(to)
+      if (this.opened) {
+        this.toggleMenu()
+      }
     }
   }
 }
@@ -56,19 +64,21 @@ export default {
 
 <style scoped>
 .app-header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   background: #fff;
-  box-shadow: 0 0 4px rgba(0,0,0,.25);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease-in-out;
+  z-index: 200;
 }
 .header-container {
-  max-width: 850px;
+  max-width: 1200px;
   height: 40px;
+  margin: 0 auto;
   padding: 10px 60px;
   position: relative;
-  z-index: 200;
 }
 .logo {
   width: 40px;
@@ -110,6 +120,7 @@ export default {
   margin-top: 8px;
 }
 .menu-mask {
+  display: none;
   position: fixed;
   left: 0;
   top: 60px;
@@ -117,24 +128,50 @@ export default {
   width: 100%;
   overflow: hidden;
   max-height: 0;
-  background: #f6f6f6;
-  -webkit-transition: max-height .5s ease;
-  transition: max-height .5s ease;
+  background: #ffffff;
+  -webkit-transition: max-height .4s ease;
+  transition: max-height .4s ease;
 }
 .open {
-  max-height: 99px;
+  max-height: 300px;
   transition-delay: 0s;
 }
+.menu-list {
+  padding: 0;
+}
+.menu-item {
+  position: relative;
+  list-style: none;
+  text-align: center;
+  padding: 10px 0;
+}
+.menu-item:after {
+  content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+}
+.menu-link {
+  text-decoration: none;
+  color: #34495e;
+}
+.mobile-active {
+  color: #42b983;
+}
 @media screen and (max-width: 480px) {
-  .app-header {
-    position: fixed;
-  }
   .header-container {
     padding: 10px 20px;
     position: relative;
   }
   .right-list {
     display: none;
+  }
+  .menu-mask {
+    display: block;
   }
   .menu {
     display: block;

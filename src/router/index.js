@@ -10,6 +10,18 @@ export default new Router({
       component: function (resolve) {
         require(['@/pages/index'], resolve)
       }
+    },
+    {
+      path: '/tags',
+      component: function (resolve) {
+        require(['@/pages/tags'], resolve)
+      }
+    },
+    {
+      path: '/about',
+      component: function (resolve) {
+        require(['@/pages/about'], resolve)
+      }
     }
   ]
 })
