@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <v-header :current="$route.path"></v-header>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
     <v-top></v-top>
     <v-footer></v-footer>
   </div>
@@ -9,7 +11,12 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      transitionName: 'vux-pop-out'
+    }
+  }
 }
 </script>
 
@@ -44,6 +51,12 @@ code {
   color: #2c3e50;
   position: relative;
   height: 100%;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
 }
 .app-body {
   padding: 75px 2em 30px 2em;

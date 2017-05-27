@@ -1,5 +1,6 @@
 import marked from 'marked'
 import highlight from 'highlight.js/lib/highlight'
+
 const languages = ["cpp", "xml", "bash", "css", "markdown", "java", "javascript", "json", "less", "makefile", "nginx", "php", "python", "scss", "sql"];
 highlight.registerLanguage('cpp', require('highlight.js/lib/languages/cpp'));
 highlight.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
@@ -42,7 +43,16 @@ marked.setOptions({
   }
 });
 
+function generateId(len) {
+  const chars = `ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz`;
+  len = len | 8;
+  let id = ``;
+  for(let i = 0;i < len; i++){
+    id += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return id;
+}
+
 export function markdown(str) {
-  let result = marked(str);
-  return result;
+  return marked(str);
 }

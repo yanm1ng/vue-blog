@@ -12,6 +12,12 @@ export default new Router({
       }
     },
     {
+      path: '/posts/:id',
+      component: function (resolve) {
+        require(['@/pages/posts'], resolve)
+      }
+    },
+    {
       path: '/tags',
       component: function (resolve) {
         require(['@/pages/tags'], resolve)

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './app'
 import router from './router'
-import components from './components/' // 加载公共组件
+import components from './components/'
 
 Object.keys(components).forEach(key => {
   var name = key.replace(/(\w)/, (v) => v.toUpperCase())

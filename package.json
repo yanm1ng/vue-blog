@@ -12,7 +12,7 @@
   "dependencies": {
     "highlight.js": "^9.11.0",
     "marked": "^0.3.6",
-    "vue": "^2.2.6",
+    "vue": "^2.2.2",
     "vue-router": "^2.3.1"
   },
   "devDependencies": {
