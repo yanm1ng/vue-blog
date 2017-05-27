@@ -2,6 +2,7 @@
   <div id="app">
     <v-header :current="$route.path"></v-header>
     <router-view></router-view>
+    <v-top></v-top>
     <v-footer></v-footer>
   </div>
 </template>
