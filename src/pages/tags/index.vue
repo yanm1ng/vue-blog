@@ -1,17 +1,56 @@
 <template>
   <main class="app-body">
-    <section class="tags-list" v-for="n in 3" :key="n">
-      <h3 class="tags-name">Vue</h3>
+    <section class="tags-list" v-for="(items, tag) of list" :key="tag">
+      <h3 class="tags-name">{{ tag }}</h3>
       <ul class="tags-articles">
-        <router-link to="" tag="li" v-for="n in 3" :key="n">Vue源码详解:compile,link,依赖,批处理一网打尽，全解析!</router-link>
+        <router-link :to="`/posts/${item.id}`" tag="li" v-for="item in items" :key="item.id">{{ item.title }}</router-link>
       </ul>
     </section>
   </main>
 </template>
 
 <script>
+import api from '@/api/'
+
 export default {
-  name: 'tags'
+  name: 'tags',
+  data() {
+    return {
+      list: []
+    }
+  },
+  created () {
+    this.loadList()
+  },
+  methods: {
+    loadList () {
+      api.getList()
+        .then(list => {
+          api.getIndex()
+          .then(index => {
+            var res = {};
+            index.map(({ title, tags }) => {
+              var id = list.filter(({ name }) => {
+                return name.replace(/\.md$/, '') == title
+              })[0].sha;
+              tags.map(key => {
+                if (!res[key]) {
+                  res[key] = [];
+                }
+                res[key].push({
+                  title,
+                  id
+                })
+              })
+            })
+            this.list = res;
+          })
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    }
+  }
 }
 </script>
 
@@ -34,6 +73,9 @@ export default {
 }
 .tags-articles li {
   margin: 10px 0;
+}
+.tags-articles li:hover {
+  color: #42b983;
 }
 </style>
 

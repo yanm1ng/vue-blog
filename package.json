@@ -10,8 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.16.1",
+    "es6-promise": "^4.1.0",
     "highlight.js": "^9.11.0",
     "marked": "^0.3.6",
+    "prismjs": "^1.6.0",
     "vue": "^2.2.2",
     "vue-router": "^2.3.1"
   },

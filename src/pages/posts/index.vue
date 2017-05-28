@@ -1,35 +1,74 @@
 <template>
   <article class="app-body" id="post-markdown">
-    <h1>标题标题标题</h1>
-    <p class="post-date">2017-04-15 12:38</p>
-    <p v-html="articleHtml" id="markdown-content"></p>
-    <div class="post-tags">
+    <h2>{{ article.title }}</h2>
+    <p class="post-date">{{ article.date }}</p>
+    <p v-if="article" v-html="articleHtml" id="markdown-content"></p>
+    <div class="tags">
       <span>Tags:</span>
-      <code>vue</code>
-      <code>react</code>
+      <span class="tag-code" v-for="tag in article.tags" :key="Math.random()">{{ tag }}</span>
     </div>
   </article>
 </template>
 
 <script>
-import { markdown } from '@/filters/'
+import api from '@/api/'
+import marked from '@/filters/marked'
 
 export default {
   name: 'posts',
   data() {
     return {
-      article: '### Marked in \n\n > asasasasasasa browser Rendered by **marked**. \n\n ## aaksajsk \n\n #### aaaaaa'
+      article: {},
+      content: ''
     }
   },
   computed: {
     articleHtml() {
-      return markdown(this.article)
+      return marked(this.content)
+    }
+  },
+  created() {
+    var id = this.$route.params.id;
+    this.loadDetail(id)
+    this.loadInfo(id)
+  },
+  methods: {
+    loadDetail(id) {
+      api.getDetail(id)
+        .then(details => {
+          this.content = details;
+        })
+        .catch(err => {
+          console.error(err)
+        })
+    },
+    loadInfo(id) {
+      api.getList().then(list => {
+        var sha = list.filter(({ name }) => {
+          return name == 'index.json'
+        })[0].sha;
+        var name = list.filter(({ sha }) => {
+          return sha == id
+        })[0].name;
+        api.getIndex(sha).then(index => {
+          var result = index.filter(({ title }) => {
+            return name.replace(/\.md$/, '') == title
+          })[0]
+          this.article = result;
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
     }
   }
 }
 </script>
 
 <style>
+#markdown-content {
+  overflow: auto;
+}
 #post-markdown h1 {
   margin: .6em 0;
   font-size: 1.8em;
@@ -39,13 +78,10 @@ export default {
   font-size: 12px;
   margin: 10px 0;
 }
-#post-markdown h2 {
+#post-markdown h3 {
   margin: 1em 0 .8em;
   padding-bottom: .3em;
   border-bottom: 1px solid #ddd;
-}
-#post-markdown h3 {
-  margin: 1em 0 .8em;
 }
 #post-markdown h4 {
   margin: 1em 0 .8em;
@@ -69,10 +105,10 @@ export default {
   color: #42b983;
   font-weight: 600;
 }
-.post-tags {
-  margin: 15px 0;
+#post-markdown ul {
+  overflow: auto;
 }
-.post-tags > span {
+.tags > span {
   font-size: .8em;
   font-weight: 600;
 }

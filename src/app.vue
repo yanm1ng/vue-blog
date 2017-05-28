@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-header :current="$route.path"></v-header>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
     <v-top></v-top>
@@ -21,6 +21,7 @@ export default {
 </script>
 
 <style>
+@import '~prismjs/themes/prism.css';
 body, ol, ul, form, p {
   margin: 0;
 }
@@ -29,20 +30,6 @@ body a {
   color: #42b983;
   font-weight: 600;
   cursor: pointer;
-}
-code, pre {
-  font-family: 'Roboto Mono', Monaco, courier, monospace;
-  font-size: 0.8em;
-  background-color: #f8f8f8;
-  -webkit-font-smoothing: initial;
-  -moz-osx-font-smoothing: initial;
-}
-code {
-  color: #e96900;
-  padding: 3px 5px;
-  margin: 0 2px;
-  border-radius: 2px;
-  white-space: nowrap;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -53,7 +40,7 @@ code {
   height: 100%;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .2s;
 }
 .fade-enter, .fade-leave-active {
   opacity: 0;
@@ -64,5 +51,18 @@ code {
   height: 100%;
   max-width: 750px;
   position: relative;
+}
+.tags {
+  margin: 15px 0;
+}
+span.tag-code {
+  font-family: 'Roboto Mono', Monaco, courier, monospace;
+  font-size: 0.8em;
+  background-color: #f8f8f8;
+  color: #e96900;
+  padding: 3px 5px;
+  margin: 0 2px;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 </style>
