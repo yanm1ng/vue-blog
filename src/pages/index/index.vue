@@ -1,5 +1,5 @@
 <template>
-  <main class="app-body">
+  <main class="app-body" :class="{ 'fade' : loading }">
     <article v-for="item in list" :key="item.id">
       <h2 class="article-head">
         <router-link :to="`/posts/${item.id}`">{{ item.title }}</router-link>
@@ -28,11 +28,15 @@ export default {
       list: []
     }
   },
+  props: {
+    loading: Boolean
+  },
   created () {
     this.loadList()
   },
   methods: {
     loadList () {
+      this.$emit('handleLoading')
       api.getList().then(list => {
         api.getIndex(list.filter(({ name }) => {
           return name == 'index.json'
@@ -44,6 +48,7 @@ export default {
             })[0].sha;
             return item;
           })
+          this.$emit('handleLoading')
         })
       })
       .catch(err => {

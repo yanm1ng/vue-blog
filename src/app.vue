@@ -1,9 +1,8 @@
 <template>
   <div id="app">
     <v-header :current="$route.path"></v-header>
-    <transition name="fade" mode="out-in">
-      <router-view></router-view>
-    </transition>
+    <v-loading :loading="loading"></v-loading>
+    <router-view :loading="loading" @handleLoading="handleLoading"></router-view>
     <v-top></v-top>
     <v-footer></v-footer>
   </div>
@@ -14,7 +13,19 @@ export default {
   name: 'app',
   data() {
     return {
-      transitionName: 'vux-pop-out'
+      loading: true
+    }
+  },
+  methods: {
+    handleLoading() {
+      var isLoading = this.loading
+      if (isLoading) {
+        setTimeout(() => {
+          this.loading = !isLoading
+        }, 800)
+      } else {
+        this.loading = !isLoading
+      }
     }
   }
 }
@@ -39,10 +50,7 @@ body a {
   position: relative;
   height: 100%;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
-}
-.fade-enter, .fade-leave-active {
+.fade {
   opacity: 0;
 }
 .app-body {
@@ -51,6 +59,7 @@ body a {
   height: 100%;
   max-width: 750px;
   position: relative;
+  transition: opacity .2s;
 }
 .tags {
   margin: 15px 0;
@@ -64,5 +73,8 @@ span.tag-code {
   margin: 0 2px;
   border-radius: 2px;
   white-space: nowrap;
+}
+.hidden {
+  display: none;
 }
 </style>

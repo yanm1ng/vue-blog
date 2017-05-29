@@ -1,5 +1,5 @@
 <template>
-  <article class="app-body" id="post-markdown">
+  <article class="app-body" id="post-markdown" :class="{ 'fade' : loading }">
     <h2>{{ article.title }}</h2>
     <p class="post-date">{{ article.date }}</p>
     <p v-if="article" v-html="articleHtml" id="markdown-content"></p>
@@ -13,6 +13,7 @@
 <script>
 import api from '@/api/'
 import marked from '@/filters/marked'
+import axios from 'axios'
 
 export default {
   name: 'posts',
@@ -22,15 +23,21 @@ export default {
       content: ''
     }
   },
+  props: {
+    loading: Boolean
+  },
   computed: {
     articleHtml() {
       return marked(this.content)
     }
   },
   created() {
-    var id = this.$route.params.id;
-    this.loadDetail(id)
-    this.loadInfo(id)
+    var that = this;
+    var id = that.$route.params.id;
+    this.$emit('handleLoading')
+    axios.all([this.loadDetail(id), this.loadInfo(id)]).then(axios.spread(function (acct, perms) {
+     that.$emit('handleLoading')
+    }));
   },
   methods: {
     loadDetail(id) {

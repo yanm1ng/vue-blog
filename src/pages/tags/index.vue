@@ -1,5 +1,5 @@
 <template>
-  <main class="app-body">
+  <main class="app-body" :class="{ 'fade' : loading }">
     <section class="tags-list" v-for="(items, tag) of list" :key="tag">
       <h3 class="tags-name">{{ tag }}</h3>
       <ul class="tags-articles">
@@ -19,36 +19,36 @@ export default {
       list: []
     }
   },
+  props: {
+    loading: Boolean
+  },
   created () {
     this.loadList()
   },
   methods: {
     loadList () {
-      api.getList()
-        .then(list => {
-          api.getIndex()
-          .then(index => {
-            var res = {};
-            index.map(({ title, tags }) => {
-              var id = list.filter(({ name }) => {
-                return name.replace(/\.md$/, '') == title
-              })[0].sha;
-              tags.map(key => {
-                if (!res[key]) {
-                  res[key] = [];
-                }
-                res[key].push({
-                  title,
-                  id
-                })
-              })
+      this.$emit('handleLoading')
+      api.getList().then(list => {
+        api.getIndex().then(index => {
+          var res = {};
+          index.map(({ title, tags }) => {
+            var id = list.filter(({ name }) => {
+              return name.replace(/\.md$/, '') == title
+            })[0].sha;
+            tags.map(key => {
+              if (!res[key]) {
+                res[key] = [];
+              }
+              res[key].push({ title, id })
             })
-            this.list = res;
           })
+          this.list = res;
+          this.$emit('handleLoading')
         })
-        .catch(err => {
-          console.error(err)
-        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
     }
   }
 }
