@@ -115,6 +115,9 @@ export default {
 #post-markdown ul {
   overflow: auto;
 }
+#post-markdown img {
+  width: 100%;
+}
 .tags > span {
   font-size: .8em;
   font-weight: 600;

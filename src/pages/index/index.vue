@@ -47,7 +47,7 @@ export default {
               return name.replace(/\.md$/, '') == item.title
             })[0].sha;
             return item;
-          })
+          }).reverse()
           this.$emit('handleLoading')
         })
       })

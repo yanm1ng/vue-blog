@@ -13,7 +13,7 @@ export default {
   name: 'app',
   data() {
     return {
-      loading: true
+      loading: false
     }
   },
   methods: {
@@ -21,11 +21,16 @@ export default {
       var isLoading = this.loading
       if (isLoading) {
         setTimeout(() => {
-          this.loading = !isLoading
+          this.loading = false
         }, 800)
       } else {
-        this.loading = !isLoading
+        this.loading = true
       }
+    }
+  },
+  watch: {
+    '$route': function(from, to) {
+      this.loading = false
     }
   }
 }
