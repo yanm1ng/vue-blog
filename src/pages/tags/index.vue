@@ -72,6 +72,7 @@ export default {
   padding-left: 1em;
 }
 .tags-articles li {
+  cursor: pointer;
   margin: 10px 0;
 }
 .tags-articles li:hover {

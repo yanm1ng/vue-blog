@@ -117,6 +117,9 @@ export default {
 }
 #post-markdown img {
   width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
 }
 .tags > span {
   font-size: .8em;

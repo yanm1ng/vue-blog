@@ -1,37 +1,35 @@
 import marked from 'marked'
-import Prism from 'prismjs'
+import hljs from 'highlight.js/lib/'
 
-// https://github.com/chjj/marked#overriding-renderer-methods
-const renderer = new marked.Renderer()
 
-/**
- * modify anchor tag for Non-English languages
- *
- * @override
- * @param {any} text
- * @param {any} level
- * @returns
- */
-renderer.heading = (text, level) => {
-  const slug = text.replace(/<(?:.|\n)*?>/gm, '').toLowerCase().replace(/[\s\n\t]+/g, '-')
-  return `<h${level} id="${slug}">${text}</h${level}>`
-}
-/**
- * highlight my code
- *
- * @override
- * @param {any} code
- * @param {any} lang
- * @returns
- */
-renderer.code = (code, lang) => {
-  const highlight = Prism.highlight(code, Prism.languages[lang] || Prism.languages.javascript)
-  return `<pre><code class="lang-${escape(lang, true)}">${highlight}</code></pre>`
-}
+let renderer = new marked.Renderer()
+renderer.heading = function (text, level) {
+  let id = generateId();
+  return `<h${level} id="${id}">${text}</h${level}>`;
+},
+
 marked.setOptions({
-  renderer,
-  breaks: true,
-  gfm: true
-})
+  renderer: renderer,
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: false,
+  smartLists: true,
+  smartypants: false,
+  highlight: function (code,lang) {
+    return hljs.highlightAuto(code).value;
+  }
+});
+
+function generateId(len) {
+  const chars = `ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz`;
+  len = len | 8;
+  let id = ``;
+  for(let i = 0;i < len; i++){
+    id += chars[Math.floor(Math.random() * chars.length)]
+  }
+  return id;
+}
 
 export default marked;

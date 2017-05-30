@@ -37,7 +37,8 @@ export default {
 </script>
 
 <style>
-@import '~prismjs/themes/prism.css';
+@import '~highlight.js/styles/tomorrow.css';
+
 body, ol, ul, form, p {
   margin: 0;
 }
