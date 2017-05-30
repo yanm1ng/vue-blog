@@ -48,6 +48,9 @@ body a {
   font-weight: 600;
   cursor: pointer;
 }
+pre {
+  overflow-x: auto;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

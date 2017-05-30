@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "es6-promise": "^4.1.0",
+    "gitment": "0.0.3",
     "highlight.js": "^9.11.0",
     "marked": "^0.3.6",
     "vue": "^2.2.2",

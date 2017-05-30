@@ -7,13 +7,18 @@
       <span>Tags:</span>
       <span class="tag-code" v-for="tag in article.tags" :key="Math.random()">{{ tag }}</span>
     </div>
+    <div id="comments"></div>
   </article>
 </template>
 
 <script>
 import api from '@/api/'
 import marked from '@/filters/marked'
+import { gitmentConfig } from '@/config/'
+
 import axios from 'axios'
+import Gitment from 'gitment'
+import 'gitment/style/default.css'
 
 export default {
   name: 'posts',
@@ -38,6 +43,9 @@ export default {
     axios.all([this.loadDetail(id), this.loadInfo(id)]).then(axios.spread(function (acct, perms) {
      that.$emit('handleLoading')
     }));
+  },
+  mounted() {
+    this.renderComments()
   },
   methods: {
     loadDetail(id) {
@@ -67,6 +75,15 @@ export default {
       .catch(err => {
         console.error(err)
       })
+    },
+    renderComments () {
+      var gitment = new Gitment({
+        owner: gitmentConfig.owner,
+        repo: gitmentConfig.repo,
+        oauth: gitmentConfig.oauth,
+        theme: gitmentConfig.theme
+      })
+      gitment.render(document.getElementById('comments'))
     }
   }
 }
@@ -92,14 +109,11 @@ export default {
 }
 #post-markdown h4 {
   margin: 1em 0 .8em;
-  position: relative;
 }
 #post-markdown h4:before {
   content: "#";
   color: #42b983;
-  position: absolute;
-  left: -.7em;
-  top: -2px;
+  margin-right: 5px;
   font-size: 1.2em;
   font-weight: 700;
 }
@@ -121,9 +135,22 @@ export default {
   display: block;
   margin: 0 auto;
 }
+#post-markdown strong {
+  color: #42b983;
+}
 .tags > span {
   font-size: .8em;
   font-weight: 600;
+}
+#comments {
+  margin-top: 50px;
+}
+.gitment-editor-submit {
+  background-color: #42b983 !important;
+  border-radius: 20px !important;
+}
+.gitment-github-icon, .gitment-comment-avatar-img {
+  border-radius: 22px !important;
 }
 </style>
 
