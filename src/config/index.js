@@ -1,3 +1,6 @@
+export const blogConfig = {
+  title: "I'm yanm1ng"
+}
 export const gitmentConfig = {
   owner: 'yanm1ng',
   repo: 'yanm1ng.github.io',

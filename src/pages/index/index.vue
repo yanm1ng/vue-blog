@@ -20,6 +20,8 @@
 
 <script>
 import api from '@/api/'
+import { blogConfig } from '@/config/'
+import { setTitle } from '@/utils/'
 
 export default {
   name: 'index',
@@ -33,6 +35,7 @@ export default {
   },
   created () {
     this.loadList()
+    setTitle(blogConfig.title);
   },
   methods: {
     loadList () {
@@ -76,7 +79,7 @@ h2.article-head {
   margin: 10px 0;
 }
 .article-summary {
-  font-size: 15px;
+  font-size: 16px;
   margin: 20px 0;
 }
 .more {
@@ -93,7 +96,7 @@ h2.article-head {
 }
 @media screen and (max-width: 480px) {
   .article-summary {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 </style>

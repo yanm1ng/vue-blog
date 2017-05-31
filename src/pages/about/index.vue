@@ -9,8 +9,14 @@
 </template>
 
 <script>
+import { blogConfig } from '@/config/'
+import { setTitle } from '@/utils/'
+
 export default {
-  name: 'about'
+  name: 'about',
+  created () {
+    setTitle(blogConfig.title);
+  }
 }
 </script>
 

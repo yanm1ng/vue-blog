@@ -15,10 +15,11 @@
 import api from '@/api/'
 import marked from '@/filters/marked'
 import { gitmentConfig } from '@/config/'
+import { setTitle } from '@/utils/'
 
 import axios from 'axios'
 import Gitment from 'gitment'
-import 'gitment/style/default.css'
+import '@/assets/css/gitment.css'
 
 export default {
   name: 'posts',
@@ -49,13 +50,12 @@ export default {
   },
   methods: {
     loadDetail(id) {
-      api.getDetail(id)
-        .then(details => {
-          this.content = details;
-        })
-        .catch(err => {
-          console.error(err)
-        })
+      api.getDetail(id).then(details => {
+        this.content = details;
+      })
+      .catch(err => {
+        console.error(err)
+      })
     },
     loadInfo(id) {
       api.getList().then(list => {
@@ -69,7 +69,10 @@ export default {
           var result = index.filter(({ title }) => {
             return name.replace(/\.md$/, '') == title
           })[0]
-          this.article = result;
+          if (result) {
+            setTitle(result.title);
+            this.article = result;
+          }
         })
       })
       .catch(err => {
@@ -93,6 +96,10 @@ export default {
 #markdown-content {
   overflow: auto;
 }
+#post-markdown a {
+  color: #42b983;
+  font-weight: 600;
+}
 #post-markdown h1 {
   margin: .6em 0;
   font-size: 1.8em;
@@ -102,40 +109,38 @@ export default {
   font-size: 12px;
   margin: 10px 0;
 }
-#post-markdown h3 {
+#markdown-content h3 {
   margin: 1em 0 .8em;
+  font-size: 1.3em;
   padding-bottom: .3em;
   border-bottom: 1px solid #ddd;
 }
-#post-markdown h4 {
+#markdown-content h4 {
   margin: 1em 0 .8em;
+  font-size: 1.2em;
 }
-#post-markdown h4:before {
+#markdown-content h4:before {
   content: "#";
   color: #42b983;
   margin-right: 5px;
   font-size: 1.2em;
   font-weight: 700;
 }
-#post-markdown blockquote {
+#markdown-content blockquote {
   margin: 1em 0;
   padding-left: 20px;
   border-left: 4px solid #42b983;
 }
-#post-markdown a {
-  color: #42b983;
-  font-weight: 600;
-}
-#post-markdown ul {
+#markdown-content ul {
   overflow: auto;
 }
-#post-markdown img {
+#markdown-content img {
   width: 100%;
   max-width: 500px;
   display: block;
   margin: 0 auto;
 }
-#post-markdown strong {
+#markdown-content strong {
   color: #42b983;
 }
 .tags > span {
@@ -143,14 +148,7 @@ export default {
   font-weight: 600;
 }
 #comments {
-  margin-top: 50px;
-}
-.gitment-editor-submit {
-  background-color: #42b983 !important;
-  border-radius: 20px !important;
-}
-.gitment-github-icon, .gitment-comment-avatar-img {
-  border-radius: 22px !important;
+  margin-top: 30px;
 }
 </style>
 

@@ -11,6 +11,8 @@
 
 <script>
 import api from '@/api/'
+import { blogConfig } from '@/config/'
+import { setTitle } from '@/utils/'
 
 export default {
   name: 'tags',
@@ -24,6 +26,7 @@ export default {
   },
   created () {
     this.loadList()
+    setTitle(blogConfig.title);
   },
   methods: {
     loadList () {
