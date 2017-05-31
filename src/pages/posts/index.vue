@@ -2,7 +2,7 @@
   <article class="app-body" id="post-markdown" :class="{ 'fade' : loading }">
     <h2>{{ article.title }}</h2>
     <p class="post-date">{{ article.date }}</p>
-    <p v-if="article" v-html="articleHtml" id="markdown-content"></p>
+    <p v-if="article" v-html="articleHtml" class="markdown-content"></p>
     <div class="tags">
       <span>Tags:</span>
       <span class="tag-code" v-for="tag in article.tags" :key="Math.random()">{{ tag }}</span>
@@ -19,7 +19,6 @@ import { setTitle } from '@/utils/'
 
 import axios from 'axios'
 import Gitment from 'gitment'
-import '@/assets/css/gitment.css'
 
 export default {
   name: 'posts',
@@ -92,8 +91,8 @@ export default {
 }
 </script>
 
-<style scoped>
-#markdown-content {
+<style>
+.markdown-content {
   overflow: auto;
 }
 #post-markdown a {
@@ -109,38 +108,38 @@ export default {
   font-size: 12px;
   margin: 10px 0;
 }
-#markdown-content h3 {
+.markdown-content h3 {
   margin: 1em 0 .8em;
   font-size: 1.3em;
   padding-bottom: .3em;
   border-bottom: 1px solid #ddd;
 }
-#markdown-content h4 {
+.markdown-content h4 {
   margin: 1em 0 .8em;
   font-size: 1.2em;
 }
-#markdown-content h4:before {
+.markdown-content h4:before {
   content: "#";
   color: #42b983;
   margin-right: 5px;
   font-size: 1.2em;
   font-weight: 700;
 }
-#markdown-content blockquote {
+.markdown-content blockquote {
   margin: 1em 0;
   padding-left: 20px;
   border-left: 4px solid #42b983;
 }
-#markdown-content ul {
+.markdown-content ul {
   overflow: auto;
 }
-#markdown-content img {
+.markdown-content img {
   width: 100%;
   max-width: 500px;
   display: block;
   margin: 0 auto;
 }
-#markdown-content strong {
+.markdown-content strong {
   color: #42b983;
 }
 .tags > span {
