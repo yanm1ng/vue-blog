@@ -99,6 +99,7 @@ export default {
 #post-markdown a {
   color: #42b983;
   font-weight: 600;
+  word-break: break-all;
 }
 #post-markdown h1 {
   margin: .6em 0;
@@ -133,15 +134,21 @@ export default {
 }
 #markdown-content ul {
   overflow: auto;
+  margin: 20px 0;
 }
 #markdown-content img {
   width: 100%;
   max-width: 500px;
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 #markdown-content strong {
   color: #42b983;
+}
+#markdown-content pre {
+  background: #f8f8f8;
+  padding: 15px 10px;
+  border-radius: 2px;
 }
 .tags > span {
   font-size: .8em;
