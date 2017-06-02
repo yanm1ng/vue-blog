@@ -1,6 +1,11 @@
 # blog
 
-> A Vue.js project
+> A blog platform built with Vue.js
+
+## Intro
+
+利用 github 的API 拉取 我的博文 [repos](https://github.com/yanm1ng/articles) 的 markdown 文件作为博客的内容
+前端使用 Vue.js
 
 ## Build Setup
 
@@ -13,9 +18,8 @@ npm run dev
 
 # build for production with minification
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Notice
+
+`develop-ssr` 分支为 Vue-SSR 服务端渲染的开发分支
