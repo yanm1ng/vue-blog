@@ -12,6 +12,7 @@ module.exports = merge(baseWebpackConfig, {
   }),    
   externals: Object.keys(require('../package.json').dependencies),
   plugins: [
+    new webpack.IgnorePlugin(/vertx/),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"server"'
