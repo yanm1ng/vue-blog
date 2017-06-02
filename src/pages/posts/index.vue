@@ -144,7 +144,7 @@ export default {
 .markdown-content strong {
   color: #42b983;
 }
-#markdown-content pre {
+.markdown-content pre {
   background: #f8f8f8;
   padding: 15px 10px;
   border-radius: 2px;
