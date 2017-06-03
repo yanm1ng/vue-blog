@@ -7,6 +7,10 @@
       <span>Tags:</span>
       <span class="tag-code" v-for="tag in article.tags" :key="Math.random()">{{ tag }}</span>
     </div>
+    <div class="qrcode">
+      <v-qrcode :value="shareUrl"></v-qrcode>
+      <p>扫描二维码，分享此文章</p>
+    </div>
     <div id="comments"></div>
   </article>
 </template>
@@ -35,6 +39,9 @@ export default {
   computed: {
     articleHtml() {
       return marked(this.content)
+    },
+    shareUrl() {
+      return window.location.href
     }
   },
   created() {
@@ -153,6 +160,21 @@ export default {
 .tags > span {
   font-size: .8em;
   font-weight: 600;
+}
+.qrcode {
+  padding: 30px 0;
+  text-align: center;
+  border-bottom: 1px dashed #e5e5e5;
+}
+.qrcode canvas {
+  padding: 12px;
+  box-shadow: 0 0 1px #e3e3e3;
+}
+.qrcode p {
+  font-size: 12px;
+  display: block;
+  text-align: center;
+  color: #999;
 }
 #comments {
   margin-top: 30px;

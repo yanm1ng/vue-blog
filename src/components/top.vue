@@ -41,6 +41,7 @@ export default {
 
 <style scoped>
 .scroll-top {
+  cursor: pointer;
   opacity: 0;
   position: fixed;
   box-sizing: border-box;
@@ -53,11 +54,9 @@ export default {
   border-radius: 20px;
   transition: opacity .5s ease;
 }
-
 .show {
   opacity: 1;
 }
-
 .top-arrow {
   width: 30px;
   height: 30px;

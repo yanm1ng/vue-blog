@@ -4,6 +4,7 @@ import top from './top'
 import loading from './loading'
 import article from './article'
 import pagination from './pagination'
+import qrcode from './qrcode'
 
 export default {
   header,
@@ -11,5 +12,6 @@ export default {
   top,
   loading,
   article,
-  pagination
+  pagination,
+  qrcode
 }
