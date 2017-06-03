@@ -2,10 +2,14 @@ import header from './header'
 import footer from './footer'
 import top from './top'
 import loading from './loading'
+import article from './article'
+import pagination from './pagination'
 
 export default {
   header,
   footer,
   top,
-  loading
+  loading,
+  article,
+  pagination
 }

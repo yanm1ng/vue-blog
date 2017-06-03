@@ -5,7 +5,7 @@
         <v-article :article="item" :key="item.id"></v-article>
       </div>
     </div>
-    <v-pagination :total="list.length"></v-pagination>
+    <v-pagination :current="current" :total="list.length"></v-pagination>
   </main>
 </template>
 
@@ -15,7 +15,7 @@ import { blogConfig } from '@/config/'
 import { setTitle } from '@/utils/'
 
 export default {
-  name: 'index',
+  name: 'page',
   data() {
     return {
       list: []
@@ -25,13 +25,21 @@ export default {
     loading: Boolean
   },
   computed: {
+    current() {
+      let { current } = this.$route.params;
+      return parseInt(current, 10);
+    },
     currentList() {
-      return this.list.slice(0, 5);
+      let { current } = this;
+      return this.list.slice((current - 1) * 5, current * 5);
     }
   },
   created () {
     this.loadList()
     setTitle(blogConfig.title);
+  },
+  updated () {
+    window.scrollTo(0, 0)
   },
   methods: {
     loadList () {

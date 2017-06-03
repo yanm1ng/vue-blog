@@ -28,6 +28,12 @@ export default new Router({
       component: function (resolve) {
         require(['@/pages/about'], resolve)
       }
-    }
+    },
+    {
+      path: '/page/:current',
+      component: function (resolve) {
+        require(['@/pages/page'], resolve)
+      }
+    },
   ]
 })
