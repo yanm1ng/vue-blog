@@ -5,7 +5,7 @@ import Index from '@/pages/index'
 import Posts from '@/pages/posts'
 import Tags from '@/pages/tags'
 import About from '@/pages/about'
-
+import Page from '@/pages/page'
 Vue.use(Router)
 
 export default new Router({
@@ -27,6 +27,10 @@ export default new Router({
     {
       path: '/about',
       component: About
+    },
+    {
+      path: '/page/:current',
+      component: Page
     }
   ]
 })
