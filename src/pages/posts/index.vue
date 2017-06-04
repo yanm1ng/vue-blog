@@ -100,9 +100,6 @@ export default {
 </script>
 
 <style>
-.markdown-content {
-  overflow: auto;
-}
 #post-markdown a {
   color: #42b983;
   font-weight: 600;
@@ -116,6 +113,12 @@ export default {
   color: #7f8c8d;
   font-size: 12px;
   margin: 10px 0;
+}
+.markdown-content {
+  overflow: auto;
+}
+.markdown-content p {
+  line-height: 1.6em;
 }
 .markdown-content h3 {
   margin: 1em 0 .8em;
@@ -136,8 +139,9 @@ export default {
 }
 .markdown-content blockquote {
   margin: 1em 0;
-  padding-left: 20px;
+  padding:  15px 20px;
   border-left: 4px solid #42b983;
+  background: #f8f8f8;
 }
 .markdown-content ul {
   overflow: auto;
@@ -154,10 +158,11 @@ export default {
 }
 .markdown-content pre {
   background: #f8f8f8;
-  padding: 15px 10px;
-  border-radius: 2px;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 13px;
 }
-.tags > span {
+.tags > span:first-child {
   font-size: .8em;
   font-weight: 600;
 }

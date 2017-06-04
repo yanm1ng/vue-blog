@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner" :class="{ 'hidden' : !loading }">
+  <div class="spinner" v-show="loading">
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>
   </div>
@@ -13,7 +13,6 @@ export default {
   }
 }
 </script>
-
 
 <style scoped>
 .spinner {

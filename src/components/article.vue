@@ -41,11 +41,11 @@ h2.article-head {
   margin: 10px 0;
 }
 .article-summary {
-  font-size: 16px;
   margin: 20px 0;
 }
 .more {
   font-size: 14px;
+  font-weight: 600;
 }
 @media screen and (max-width: 480px) {
   .article-summary {

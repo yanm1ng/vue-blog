@@ -61,10 +61,6 @@ export default {
 <style scoped>
 .post-article {
   padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-.post-article:last-child {
-  border: none;
 }
 </style>
 

@@ -89,6 +89,7 @@ export default {
   display: flex;
   align-items: center;
   float: left;
+  font-weight: 600;
 }
 .right-list {
   list-style: none;
