@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './app.vue'
+import App from './app'
 import router from './router'
 import components from './components/'
 
@@ -10,12 +10,9 @@ Object.keys(components).forEach(key => {
 
 Vue.config.productionTip = false
 
-const app = new Vue({
+new Vue({
+  el: '#app',
   router,
-  ...App
+  template: '<App/>',
+  components: { App }
 })
-
-export { 
-  app,
-  router
-}

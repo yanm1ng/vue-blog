@@ -23,6 +23,7 @@ import { setTitle } from '@/utils/'
 
 import axios from 'axios'
 import Gitment from 'gitment'
+import '@/assets/css/gitment.css'
 
 export default {
   name: 'posts',
