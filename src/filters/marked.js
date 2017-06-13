@@ -6,7 +6,7 @@ let renderer = new marked.Renderer()
 renderer.heading = function (text, level) {
   let id = generateId();
   return `<h${level} id="${id}">${text}</h${level}>`;
-},
+}
 
 marked.setOptions({
   renderer: renderer,
@@ -17,7 +17,7 @@ marked.setOptions({
   sanitize: false,
   smartLists: true,
   smartypants: false,
-  highlight: function (code,lang) {
+  highlight: function (code, lang) {
     return hljs.highlightAuto(code).value;
   }
 });

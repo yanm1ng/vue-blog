@@ -35,5 +35,11 @@ export default new Router({
         require(['@/pages/page'], resolve)
       }
     },
+    {
+      path: '/archives',
+      component: function (resolve) {
+        require(['@/pages/archives'], resolve)
+      }
+    },
   ]
 })

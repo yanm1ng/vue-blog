@@ -142,6 +142,8 @@ export default {
   padding:  15px 20px;
   border-left: 4px solid #42b983;
   background: #f8f8f8;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
 }
 .markdown-content ul {
   overflow: auto;
@@ -159,8 +161,21 @@ export default {
 .markdown-content pre {
   background: #f8f8f8;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 2px;
   font-size: 13px;
+  position: relative;
+}
+.markdown-content code:after {
+  content: attr(class);
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #ccc;
+  text-align: right;
+  font-size: 0.7em;
+  padding: 5px 10px 0;
+  line-height: 15px;
+  height: 15px;
 }
 .tags > span:first-child {
   font-size: .8em;

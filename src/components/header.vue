@@ -43,6 +43,7 @@ export default {
       links: [
         { name: '文章', link: '/' },
         { name: '标签', link: '/tags' },
+        { name: '归档', link: '/archives' },
         { name: '关于我', link: '/about' }
       ],
       opened: false,
