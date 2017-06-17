@@ -8,7 +8,7 @@
       <span class="tag-code" v-for="tag in article.tags" :key="Math.random()">{{ tag }}</span>
     </div>
     <div class="article-summary">{{ article.summary }}</div>
-    <router-link class="more" :to="`/posts/${article.id}`">read more</router-link>
+    <router-link class="more" :to="`/posts/${article.id}`">Read more</router-link>
   </article>
 </template>
 
@@ -26,7 +26,7 @@ export default {
 
 <style scoped>
 h2.article-head {
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom: 0;
 }
 .article-head > a {
@@ -37,20 +37,14 @@ h2.article-head {
 }
 .article-date {
   color: #7f8c8d;
-  font-size: 12px;
+  font-size: 0.9em;
   margin: 10px 0;
 }
 .article-summary {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .more {
-  font-size: 14px;
   font-weight: 600;
-}
-@media screen and (max-width: 480px) {
-  .article-summary {
-    font-size: 15px;
-  }
 }
 </style>
 

@@ -46,7 +46,7 @@ export default {
   position: fixed;
   box-sizing: border-box;
   right: 2em;
-  bottom: 110px;
+  bottom: 80px;
   width: 40px;
   height: 40px;
   padding: 5px;

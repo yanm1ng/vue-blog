@@ -111,11 +111,14 @@ export default {
 }
 #post-markdown .post-date {
   color: #7f8c8d;
-  font-size: 12px;
+  font-size: .9em;
   margin: 10px 0;
 }
 .markdown-content {
   overflow: auto;
+}
+#post-markdown h2 {
+  font-size: 1.4em;
 }
 .markdown-content p {
   line-height: 1.6em;
@@ -149,9 +152,11 @@ export default {
   overflow: auto;
   margin: 20px 0;
 }
+.markdown-content ul li {
+  padding: 5px 0;
+}
 .markdown-content img {
-  width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   display: block;
   margin: 20px auto;
 }
@@ -172,13 +177,13 @@ export default {
   right: 0;
   color: #ccc;
   text-align: right;
-  font-size: 0.7em;
+  font-size: 0.8em;
   padding: 5px 10px 0;
   line-height: 15px;
   height: 15px;
 }
 .tags > span:first-child {
-  font-size: .8em;
+  margin-right: 10px;
   font-weight: 600;
 }
 .qrcode {
@@ -191,7 +196,7 @@ export default {
   box-shadow: 0 0 1px #e3e3e3;
 }
 .qrcode p {
-  font-size: 12px;
+  font-size: .8em;
   display: block;
   text-align: center;
   color: #999;

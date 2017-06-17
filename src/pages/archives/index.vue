@@ -63,9 +63,9 @@ export default {
 <style scoped>
 #archives:before {
   position: absolute;
-  top: 5.5em;
+  top: 2em;
   bottom: 1em;
-  left: 44px;
+  left: 30px;
   height: auto;
   content: '';
   background-color: #42b983;
@@ -107,6 +107,7 @@ export default {
 }
 .archive-title {
   color: #34495e;
+  font-size: 1.1em;
   transition: all .3s ease;
 }
 .archive-title:hover {
@@ -114,7 +115,7 @@ export default {
 }
 .archive-date {
   color: #7f8c8d;
-  font-size: 12px;
+  font-size: .9em;
   margin: 5px 0;
 }
 </style>

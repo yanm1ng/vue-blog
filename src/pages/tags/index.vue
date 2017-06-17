@@ -58,7 +58,12 @@ export default {
 </script>
 
 <style scoped>
+.tags-list {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 .tags-name {
+  font-size: 1.4em;
   position: relative;
 }
 .tags-name:before {
@@ -71,7 +76,7 @@ export default {
   font-weight: 700;
 }
 .tags-articles {
-  font-size: 15px;
+  font-size: 1.1em;
   padding-left: 1em;
 }
 .tags-articles li {

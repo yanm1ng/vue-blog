@@ -1,30 +1,39 @@
-body, ol, ul, form, p {
-  margin: 0;
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../fonts/SourceSansPro.ttf')
 }
 body {
-  font-size: 15px;
+  font-family: 'Source Sans Pro', 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+  margin: 0;
+  height: 100%;
 }
-body a {
+ol, ul, form, p {
+  margin: 0;
+}
+a {
   text-decoration: none;
   color: #42b983;
   cursor: pointer;
+}
+p {
+  word-spacing: 0.05em
 }
 pre {
   overflow-x: auto;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   position: relative;
-  height: 100%;
 }
 .fade {
   opacity: 0;
 }
 .app-body {
-  padding: 75px 2em 30px 2em;
+  padding: 75px 1em 30px 1em;
   margin: 0 auto;
   height: 100%;
   max-width: 750px;
@@ -46,4 +55,9 @@ span.tag-code {
 }
 .hidden {
   display: none;
+}
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
 }

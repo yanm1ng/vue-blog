@@ -1,10 +1,12 @@
 <template>
   <main class="app-body">
-    <h3 class="about-me">关于我</h3>
-    <ul class="intro-list">
-      <li><span class="not">985、211大学</span> 计算机大三学生</li>
-      <li>希望自己能做出点小成绩</li>
-    </ul>
+    <div class="about-page">
+      <h3 class="about-me">关于我</h3>
+      <ul class="intro-list">
+        <li><span class="not">985、211大学</span> 计算机大三学生</li>
+        <li>希望自己能做出点小成绩</li>
+      </ul>
+    </div>
   </main>
 </template>
 
@@ -21,7 +23,12 @@ export default {
 </script>
 
 <style scoped>
+.about-page {
+  margin-left: 1em;
+  margin-right: 1em;
+}
 .about-me {
+  font-size: 1.4em;
   position: relative;
 }
 .about-me:before {
@@ -35,7 +42,10 @@ export default {
 }
 .intro-list {
   padding: 1em;
-  font-size: 15px;
+  font-size: 1.1em;
+}
+.intro-list li {
+  padding: 5px 0;
 }
 .not {
   text-decoration: line-through;
